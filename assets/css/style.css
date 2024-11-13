@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+}
+
+form > div {
+    margin-bottom: 20px;
+}
+
+.autocomplete-result {
+    position: relative;
+    display: none;
+}
+
+.autocomplete-result.active {
+    display: block;
+}
+
+.autocomplete-result ul {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background: #efefef;
+    z-index: 5;
+    width: 177px;
+}
+
+.autocomplete-result ul li {
+    list-style: none;
+    padding: 10px 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+    transition: 0.3s all ease;
+}
+
+.autocomplete-result ul li:hover {
+    cursor: pointer;
+    background: #ccc;
+}

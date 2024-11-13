@@ -7,20 +7,50 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Javascript avancé</title>
 
+        <link rel="stylesheet" href="assets/css/style.css">
+
         <!--<script src="assets/js/app-get.js" defer></script>-->
         <script src="assets/js/app-post.js" defer></script>
+        <script src="assets/js/AutocompleteClass.js" defer></script>
+        <script src="assets/js/autocomplete.js" defer></script>
     </head>
     <body>
         <h1>Hello world</h1>
 
         <form action="" id="voiture-create">
-            <input type="text" name="immatriculation" id="immatriculation" placeholder="immatriculation">
-            <input type="text" name="marque" placeholder="marque">
-            <input type="text" name="modele" placeholder="modele">
-            <input type="text" name="km" placeholder="km">
-            <input type="text" name="annee" placeholder="annee">
-            <input type="text" name="etat" placeholder="etat">
-            <input type="text" name="type_motorisation" placeholder="type_motorisation">
+            <div>
+                <input type="text" name="immatriculation" id="immatriculation" placeholder="immatriculation" autocomplete="off">
+
+                <div class="autocomplete-result">
+                </div>
+            </div>
+
+            <div>
+                <input type="text" id="marque" name="marque" placeholder="marque" autocomplete="off">
+
+                <div class="autocomplete-result">
+                </div>
+            </div>
+
+            <div>
+                <input type="text" id="modele" name="modele" placeholder="modele">
+            </div>
+
+            <div>
+                <input type="text" name="km" placeholder="km">
+            </div>
+
+            <div>
+                <input type="text" name="annee" placeholder="annee">
+            </div>
+
+            <div>
+              <input type="text" name="etat" placeholder="etat">
+            </div>
+
+            <div>
+              <input type="text" name="type_motorisation" placeholder="type_motorisation">
+            </div>
 
             <button type="submit">Valider</button>
         </form>
