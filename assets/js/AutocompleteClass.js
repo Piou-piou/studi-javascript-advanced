@@ -1,18 +1,19 @@
 class Autocomplete {
   constructor(inputElement, fieldName, url) {
     this.inputElement = inputElement;
-    this.autocompleteResult = inputElement.parentNode.querySelector('.autocomplete-result');
     this.fieldName = fieldName;
     this.url = url;
   }
 
   search() {
     const inputElement = this.inputElement;
-    const autocompleteResult = this.autocompleteResult;
 
     if (inputElement.value.length < 2) {
       return;
     }
+
+    this.createResultDiv(inputElement.parentElement);
+    const autocompleteResult = this.autocompleteResult;
 
     const formData = new FormData();
     formData.append(this.fieldName, inputElement.value);
@@ -49,9 +50,26 @@ class Autocomplete {
       this.inputElement.value = target.dataset[this.fieldName];
 
       this.autocompleteResult.classList.remove('active');
+
+      setTimeout(() => {
+        this.autocompleteResult.remove();
+      }, 600);
     });
 
     return li;
+  }
+
+  createResultDiv(parentDiv) {
+    if (parentDiv.querySelector('.autocomplete-result')) {
+      return;
+    }
+
+    const div = document.createElement('div');
+    div.classList.add('autocomplete-result');
+
+    parentDiv.append(div);
+
+    this.autocompleteResult = div;
   }
 
   cleanSearch() {
