@@ -8,11 +8,12 @@ form > div {
 
 .autocomplete-result {
     position: relative;
-    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* see AutocompleteClass for animation */
 }
 
 .autocomplete-result.active {
-    display: block;
+    opacity: 1;
 }
 
 .autocomplete-result ul {
