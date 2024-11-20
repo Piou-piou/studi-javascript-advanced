@@ -19,11 +19,28 @@
 
         <form action="" id="voiture-create">
             <div>
-                <input type="text" name="immatriculation" id="immatriculation" placeholder="immatriculation" autocomplete="off">
+                <input
+                        type="text"
+                        name="immatriculation"
+                        id="immatriculation"
+                        placeholder="immatriculation"
+                        autocomplete="off"
+                        data-autocmplete
+                        data-autocomplete-url="http://bootcamp.local/api/voiture/search"
+                        data-autocomplete-field-name="immatriculation"
+                >
             </div>
 
             <div>
-                <input type="text" id="marque" name="marque" placeholder="marque" autocomplete="off">
+                <input
+                        type="text"
+                        id="marque"
+                        name="marque"
+                        placeholder="marque"
+                        autocomplete="off"
+                        data-autocmplete
+                        data-autocomplete-url="http://bootcamp.local/api/voiture/search"
+                >
             </div>
 
             <div>

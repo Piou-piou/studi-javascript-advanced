@@ -1,37 +1,38 @@
 class Autocomplete {
-  constructor(inputElement, fieldName, url) {
-    this.inputElement = inputElement;
-    this.fieldName = fieldName;
-    this.url = url;
+  constructor() {
+    document.querySelectorAll('[data-autocmplete]').forEach((element) => {
+      element.addEventListener('keyup', (event) => {
+        if (event.key !== 'Shift') {
+          this.search(element, element.dataset.autocompleteFieldName ?? element.id, element.dataset.autocompleteUrl);
+        }
+      });
+    });
   }
 
-  search() {
-    const inputElement = this.inputElement;
-
+  search(inputElement, fieldName, url) {
     if (inputElement.value.length < 2) {
       return;
     }
 
-    this.createResultDiv(inputElement.parentElement);
-    const autocompleteResult = this.autocompleteResult;
+    const autocompleteResult = this.createResultDiv(inputElement.parentElement);
 
     const formData = new FormData();
-    formData.append(this.fieldName, inputElement.value);
+    formData.append(fieldName, inputElement.value);
 
     setTimeout(async () => {
-      await fetch(this.url, {
+      await fetch(url, {
         headers: new Headers(),
         method: 'POST',
         body: formData
       })
       .then(response => response.json())
       .then(response => {
-        this.cleanSearch();
+        this.cleanSearch(autocompleteResult);
 
         const ul = document.createElement('ul');
 
         for (let data of response.data) {
-          ul.append(this.addSearchResult(data));
+          ul.append(this.addSearchResult(inputElement, fieldName, autocompleteResult, data));
         }
 
         autocompleteResult.append(ul);
@@ -40,19 +41,19 @@ class Autocomplete {
     }, 900)
   }
 
-  addSearchResult(data) {
+  addSearchResult(inputElement, fieldName, autocompleteResultDiv, data) {
     const li = document.createElement('li');
-    li.innerText = data[this.fieldName];
-    li.dataset[this.fieldName] = data[this.fieldName];
+    li.innerText = data[fieldName];
+    li.dataset[fieldName] = data[fieldName];
 
     li.addEventListener('click', (event) => {
       const target = event.currentTarget;
-      this.inputElement.value = target.dataset[this.fieldName];
+      inputElement.value = target.dataset[fieldName];
 
-      this.autocompleteResult.classList.remove('active');
+      autocompleteResultDiv.classList.remove('active');
 
       setTimeout(() => {
-        this.autocompleteResult.remove();
+        autocompleteResultDiv.remove();
       }, 600);
     });
 
@@ -69,11 +70,11 @@ class Autocomplete {
 
     parentDiv.append(div);
 
-    this.autocompleteResult = div;
+    return div;
   }
 
-  cleanSearch() {
-    const existingUl = this.autocompleteResult.querySelector('ul');
+  cleanSearch(autocompleteResult) {
+    const existingUl = autocompleteResult.querySelector('ul');
     if (existingUl) {
       existingUl.remove();
     }
