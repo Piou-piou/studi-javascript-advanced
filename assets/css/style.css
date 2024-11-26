@@ -37,3 +37,40 @@ form > div {
     cursor: pointer;
     background: #ccc;
 }
+
+.toast {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 999;
+    box-shadow: 0px 2px 7px 1px #CCCCCC;
+    transition: 0.3s opacity ease;
+    opacity: 0;
+}
+
+.toast.success {
+    background: #69c569;
+}
+
+.toast.error {
+    background: #db5858;
+}
+
+.toast > div {
+    padding: 10px;
+}
+
+.toast > .message {
+    float: left;
+    min-width: 245px;
+    max-width: 245px;
+    border-right: 1px solid #ccc;
+}
+
+.toast > .close {
+    float: right;
+    width: 10px;
+    height: 100%;
+    cursor: pointer;
+}
