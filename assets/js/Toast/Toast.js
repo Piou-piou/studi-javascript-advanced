@@ -1,23 +1,21 @@
 class Toast {
-  constructor() {
-    this.template = `
+  static #template =  `
         <div class="message"></div>
         <div class="close">X</div>
     `;
-  }
 
-  displayAll() {
+  static displayAll() {
     document.querySelectorAll('.toast').forEach((element) => {
       element.style.opacity = 1;
-      this.addEventCloseToast(element, element.querySelector('.close'));
-      this.closeToast(element);
+      this.#addEventClose(element, element.querySelector('.close'));
+      this.close(element);
     });
   }
 
-  displayToast(type, message) {
-    this.closeToasts();
+  static display(type, message) {
+    this.closeAll();
 
-    const toastDiv = this.createToastDivs(type, message);
+    const toastDiv = this.#createDivs(type, message);
 
     // display toast
     setTimeout((event) => {
@@ -25,25 +23,25 @@ class Toast {
     }, 100);
 
     // remove toast
-    this.closeToast(toastDiv);
+    this.close(toastDiv);
   }
 
-  createToastDivs(type, message) {
+  static #createDivs(type, message) {
     const toastDiv = document.createElement('div');
     toastDiv.classList.add('toast');
     toastDiv.classList.add(type);
-    toastDiv.innerHTML = this.template;
+    toastDiv.innerHTML = this.#template;
 
     toastDiv.querySelector('.message').innerText = message;
 
-    this.addEventCloseToast(toastDiv, toastDiv.querySelector('.close'));
+    this.#addEventClose(toastDiv, toastDiv.querySelector('.close'));
 
     document.body.append(toastDiv);
 
     return toastDiv;
   }
 
-  closeToast(toastDiv, fromEvent = false) {
+  static close(toastDiv, fromEvent = false) {
     let opacityTime = 8000;
     let removeTime = 9000;
     if (true === fromEvent) {
@@ -59,15 +57,15 @@ class Toast {
     }, removeTime);
   }
 
-  addEventCloseToast(toastDiv, toastCloseDiv) {
+  static #addEventClose(toastDiv, toastCloseDiv) {
     toastCloseDiv.addEventListener('click', (event) => {
-      this.closeToast(toastDiv, true);
+      this.close(toastDiv, true);
     });
   }
 
-  closeToasts() {
+  static closeAll() {
     document.querySelectorAll('.toast').forEach((element) => {
-      this.closeToast(element, true);
+      this.close(element, true);
     });
   }
 }
