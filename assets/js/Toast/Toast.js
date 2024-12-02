@@ -15,7 +15,7 @@ class Toast {
   static display(type, message) {
     this.closeAll();
 
-    const toastDiv = this.#createDivs(type, message);
+    const toastDiv = this.#createDiv(type, message);
 
     // display toast
     setTimeout((event) => {
@@ -48,7 +48,7 @@ class Toast {
     }, removeTime);
   }
 
-  static #createDivs(type, message) {
+  static #createDiv(type, message) {
     const toastDiv = document.createElement('div');
     toastDiv.classList.add('toast');
     toastDiv.classList.add(type);
