@@ -2,7 +2,9 @@ const form = document.getElementById('voiture-create');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  displayToast('error', 'Une erreur est survenue merci de retester');
+  const toast = new Toast();
+
+  toast.displayToast('error', 'Une erreur est survenue merci de retester');
 
   const formData = new FormData(form);
 
