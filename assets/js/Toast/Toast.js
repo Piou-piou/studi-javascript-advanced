@@ -53,7 +53,6 @@ class Toast {
     toastDiv.classList.add('toast');
     toastDiv.classList.add(type);
     toastDiv.innerHTML = this.#template;
-
     toastDiv.querySelector('.message').innerText = message;
 
     this.#addEventClose(toastDiv, toastDiv.querySelector('.close'));
