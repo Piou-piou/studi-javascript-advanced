@@ -1,8 +1,8 @@
 class Toast {
-  static #template =  `
-        <div class="message"></div>
-        <div class="close">X</div>
-    `;
+  static #template = `
+    <div class="message"></div>
+    <div class="close">X</div>
+  `;
 
   static displayAll() {
     document.querySelectorAll('.toast').forEach((element) => {
@@ -26,19 +26,10 @@ class Toast {
     this.close(toastDiv);
   }
 
-  static #createDivs(type, message) {
-    const toastDiv = document.createElement('div');
-    toastDiv.classList.add('toast');
-    toastDiv.classList.add(type);
-    toastDiv.innerHTML = this.#template;
-
-    toastDiv.querySelector('.message').innerText = message;
-
-    this.#addEventClose(toastDiv, toastDiv.querySelector('.close'));
-
-    document.body.append(toastDiv);
-
-    return toastDiv;
+  static closeAll() {
+    document.querySelectorAll('.toast').forEach((element) => {
+      this.close(element, true);
+    });
   }
 
   static close(toastDiv, fromEvent = false) {
@@ -57,15 +48,24 @@ class Toast {
     }, removeTime);
   }
 
+  static #createDivs(type, message) {
+    const toastDiv = document.createElement('div');
+    toastDiv.classList.add('toast');
+    toastDiv.classList.add(type);
+    toastDiv.innerHTML = this.#template;
+
+    toastDiv.querySelector('.message').innerText = message;
+
+    this.#addEventClose(toastDiv, toastDiv.querySelector('.close'));
+
+    document.body.append(toastDiv);
+
+    return toastDiv;
+  }
+
   static #addEventClose(toastDiv, toastCloseDiv) {
     toastCloseDiv.addEventListener('click', (event) => {
       this.close(toastDiv, true);
-    });
-  }
-
-  static closeAll() {
-    document.querySelectorAll('.toast').forEach((element) => {
-      this.close(element, true);
     });
   }
 }
