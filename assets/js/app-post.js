@@ -1,3 +1,5 @@
+import Toast from "./Toast/Toast.js";
+
 const form = document.getElementById('voiture-create');
 form.addEventListener('submit', (event) => {
   event.preventDefault();

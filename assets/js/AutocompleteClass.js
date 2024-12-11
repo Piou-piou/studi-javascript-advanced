@@ -1,4 +1,4 @@
-class Autocomplete {
+export default class Autocomplete {
   constructor() {
     document.querySelectorAll('[data-autocmplete]').forEach((element) => {
       element.addEventListener('keyup', (event) => {

@@ -1,4 +1,4 @@
-class Toast {
+export default class Toast {
   static #template = `
     <div class="message"></div>
     <div class="close">X</div>

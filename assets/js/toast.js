@@ -1,3 +1,5 @@
+import Toast from "./Toast/Toast.js";
+
 Toast.displayAll();
 
 

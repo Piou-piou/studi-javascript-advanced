@@ -1,3 +1,6 @@
+import LocalStorageManager from "./Storage/LocalStorageManager.js";
+import SessionStorageManager from "./Storage/SessionStorageManager.js";
+
 const localStorageManager = new LocalStorageManager();
 const sessionStorageManager = new SessionStorageManager();
 

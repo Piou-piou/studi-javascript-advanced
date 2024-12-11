@@ -1,4 +1,4 @@
-class StorageManager {
+export default class StorageManager {
   constructor() {
     this.type = null;
   }

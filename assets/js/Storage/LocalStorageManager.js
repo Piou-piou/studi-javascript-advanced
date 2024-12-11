@@ -1,4 +1,6 @@
-class LocalStorageManager extends StorageManager {
+import StorageManager from "./StorageManager.js";
+
+export default class LocalStorageManager extends StorageManager {
   constructor() {
     super();
 
